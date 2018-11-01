@@ -1,0 +1,74 @@
+<style>
+footer {height: inherit;}
+</style>
+    <footer class="foot-fixed">		
+    <a class="foot-item  <eq name="act" value="gears">active</eq>" href="<{:u('market/gears')}>">		
+    	<span class="iconfont icon-guanli"></span>		
+        	<span class="foot-label">设置</span>		
+            </a>
+            <a class="foot-item <eq name="act" value="create2">active</eq>" href="<{:u('market/create2')}>">		
+            	<span class="iconfont icon-fabu"></span>			
+                <span class="foot-label">上单</span>
+            </a>	
+            <a class="foot-item <eq name="act" value="index">active</eq>" href="<{:u('market/index')}>">			
+            <span class="iconfont icon-waimai1"></span>			
+            <span class="foot-label">商品</span>		
+            </a>	
+
+            <a class="foot-item <eq name="act" value="elecate">active</eq>" href="<{:U('market/marketcate')}>">		
+            	<span class="iconfont icon-lipin4"></span>			
+            <span class="foot-label">分类</span>		
+            </a>		
+
+            <a class="foot-item <eq name="act" value="eleorder">active</eq>" href="<{:U('market/marketorder',array('status'=>1))}>">			
+            <span class="iconfont icon-kecheng"></span>			
+            <span class="foot-label">订单</span>		
+            </a>	
+
+            </footer>	
+            
+            
+            <script type="text/javascript" language="javascript">
+  $(document).ready(function(){
+    $('<audio id="chat_audit_mp3_1"><source src="/static/default/mp3/1.mp3" type="audio/mpeg"></audio>').appendTo('body');
+	$('<audio id="chat_audit_mp3_2"><source src="/static/default/mp3/2.mp3" type="audio/mpeg"></audio>').appendTo('body');
+	$('<audio id="chat_audit_mp3_3"><source src="/static/default/mp3/3.mp3" type="audio/mpeg"></audio>').appendTo('body');
+	$('<audio id="chat_audit_mp3_4"><source src="/static/default/mp3/4.mp3" type="audio/mpeg"></audio>').appendTo('body');
+    function voice_reminds(){
+	   var shop_id = "<{$SHOP['shop_id']}>";
+       $.post('<{:U("app/api/reminds")}>',{shop_id:shop_id},function(result){
+          if(result.status == '1'){
+             layer.msg(result.message,{icon:6});
+             $('#chat_audit_mp3_1')[0].play();
+          }else if(result.status == '2'){
+			 layer.msg(result.message,{icon:6});
+             $('#chat_audit_mp3_2')[0].play();
+		  }else if(result.status == '3'){
+			 layer.msg(result.message,{icon:6});
+             $('#chat_audit_mp3_3')[0].play();
+		  }else if(result.status == '4'){
+			 layer.msg(result.message,{icon:6});
+             $('#chat_audit_mp3_4')[0].play();
+		  }
+      },'json');
+    }
+	var timer = 0; 
+	var intervalKey = null; 
+	function showColumns() {
+		timer++; 
+		if (timer >= 500) { 
+			clearInterval(intervalKey);
+			intervalKey = null;
+		}
+		voice_reminds()//执行函数
+	}
+	//使用interval每隔10s
+	intervalKey = setInterval(showColumns, 6000);
+	})
+</script>
+
+
+
+           <iframe id="x-frame" name="x-frame" style="display:none;"></iframe>
+          </body>
+      </html>

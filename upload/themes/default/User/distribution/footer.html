@@ -1,0 +1,21 @@
+<div class="blank-20"></div>
+ <footer class="foot-fixed">
+    <a class="foot-item  <if condition="($act eq 'index')">active</if> " href="<{:u('distribution/index')}>">		
+    <span class="iconfont icon-shouye"></span>
+    <span class="foot-label">分销首页</span>
+    </a>
+    <a class="foot-item  <if condition="($act eq 'profit')">active</if> " href="<{:LinkTo('distribution/profit',array('status'=>1))}>">			
+    <span class="iconfont icon-maidan"></span><span class="foot-label">收益</span></a>
+    
+
+    <a class="foot-item  <if condition="($act eq 'qrcode')">active</if>" href="<{:U('wap/api/qrcode', array('fuid'=>$MEMBER['user_id']))}>">			
+    <span class="iconfont icon-erweima1"></span><span class="foot-label">二维码</span></a>
+    
+
+</footer>
+
+
+<iframe id="x-frame" name="x-frame" style="display:none;">
+</iframe>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<include file="public:header"/>
+<header class="top-fixed bg-yellow bg-inverse">
+	<div class="top-back">
+		<a class="top-addr" href="javascript:history.back(-1);"><i class="iconfont icon-angle-left"></i></a>
+	</div>
+		<div class="top-title">
+			购买会员等级
+		</div>
+	<div class="top-signed">
+		<include file="public:message"/>
+	</div>
+</header>
+
+
+
+<!-- 筛选TAB -->
+<div class="line tab-bar">
+	<div class="button-toolbar">
+		<div class="button-group">
+			<a class="block button bg-dot active">您当前的等级：<{$ranks[$MEMBER['rank_id']]['rank_name']}></a>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="blank-10"></div>
+
+
+<ul id="pay-method" class="pay-method">
+
+	<foreach name="ranks" item="var">
+        <li data-rel="<{$var['rank_id']}>" class="media media-x payment <if condition="$MEMBER['rank_id'] eq $var['rank_id']">bg</if>">
+            <a class="float-left" id="www-hatudou-com-url-btn"   href="<{:U('information/pay',array('rank_id'=>$var['rank_id']))}>">
+                <img src="<{:config_img($var[photo])}>">
+            </a>
+            <div class="media-body">
+                <div class="line">
+                    <div class="x10">
+                   <a  id="www-hatudou-com-url-btn"  href="<{:U('information/pay',array('rank_id'=>$var['rank_id']))}>"> <{$var.rank_name}> 
+                   <if condition="$MEMBER['rank_id'] eq $var['rank_id']">
+                   【当前等级】
+                   </if><p>购买金额：<{:round($var['price']/100,2)}> 点我购买该等级
+                  
+                   
+                   </p></a>
+                    </div>
+                    <div class="x2">
+                        <span class="radio txt txt-small radius-circle bg-green"><i class="icon-check"></i></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </foreach>
+    
+    
+    
+</ul>
+
+<div class="blank-30"></div>
+<include file="public:footer"/>

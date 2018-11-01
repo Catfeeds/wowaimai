@@ -1,0 +1,32 @@
+<style>
+.layui-layer-title {border-bottom: 0px solid #eee;}
+.service_weixin_qrcode{ top:20%}
+.service_weixin_qrcode img {width:100%}
+</style>
+<php>
+	$is_subscribe = D('Weixin')->subscribe($MEMBER['user_id']);//判断是否关注公众号
+</php>
+
+<if condition="(!empty($is_weixin)) and ($is_subscribe neq 1)"><!--首先是在微信里面-->
+    <script>
+        $(document).ready(function () {
+		var img = "<{$CONFIG['site']['wxcode']}>";
+           layer.open({
+				  type: 1,
+				  title: false ,
+				  closeBtn: true,
+				  area: '80%',
+				  shade: 0.4,
+				  offset: ['20%', '10%'],
+				  id: 'LAY_layuipro',
+				  resize: false,
+				  btn: ['关闭窗口'],
+				  btnAlign: 'c',
+				  moveType: 1 ,
+				  content: '<div class="service_weixin_qrcode"><img src='+img+'><br/><a>长按二维码点击识别关注后浏览</a></div>',success: function(layero){
+					var btn = layero.find('.layui-layer-btn');
+				  }
+			});
+        })
+    </script> 
+</if>
